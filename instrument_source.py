@@ -7,6 +7,7 @@ import subprocess
 import shutil
 
 
+logging.basicConfig(level=logging.INFO)
 ROOT_DIR = pathlib.Path(__file__).parent
 INSTRUMENT_DIR = ROOT_DIR / 'instruments'
 MXNET_DIR = ROOT_DIR / 'mxnet'
@@ -58,9 +59,9 @@ def copy_files(instrument_dir):
 def instrument_source():
     args = get_args()
     logging.info('Start walking in instrumentation directory.')
-    cpl, cpl_core = copy_files(f'{INSTRUMENT_DIR}/{args.base_dir}')
+    copy_files(f'{INSTRUMENT_DIR}/{args.base_dir}')
     if args.extra_dir:
-        cpl, cpl_core = copy_files(f'{INSTRUMENT_DIR}/{args.extra_dir}')
+        copy_files(f'{INSTRUMENT_DIR}/{args.extra_dir}')
 
 if __name__ == '__main__':
     instrument_source()
