@@ -59,4 +59,3 @@ export MXNET_ENABLE_CANCEL=1
 ## Caveats
 
 1. Only CPU training is supported.
-2. In case of any conflict caused by upstream updating, please use MXNet with commit `11fe466`.
