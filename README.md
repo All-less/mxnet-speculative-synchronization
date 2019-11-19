@@ -18,17 +18,25 @@ git clone --recursive https://github.com/All-less/mxnet-speculative-synchronizat
 cd mxnet-speculative-synchronization
 ```
 
-Our source is based on MXNet, so we need to replace them into MXNet sources. We will elaborate on `extra-dir` option in [next section](#Run).
+Roll back MXNet to commit `7fcaf15a`.
+
+```bash
+cd mxnet
+git checkout 7fcaf15a3a597cc72a342d1bdb00273dec00e78c
+git submodule update --recursive
+```
+
+Our implementation is based on MXNet, so we need to insert some instrumentation into MXNet sources. We will elaborate on `extra-dir` option in [next section](#Run).
 
 ```bash
 python instrument_source.py --extra-dir <fixed_waiting|freshness_tuning>
 ```
 
-After instrumenting, follow the instructions [here](https://mxnet.incubator.apache.org/get_started/install.html) to build MXNet.
+After instrumenting, follow the instructions [here](scripts/install-mxnet.sh) to build MXNet.
 
 ## Get Started
 
-The training process is the same as [original](https://mxnet.incubator.apache.org/tutorials/vision/large_scale_classification.html), whereas you need to set some environment variables to activate speculative synchronization. We provide two different modes of synchronization.
+The training process is the same as [original](http://34.201.8.176/versions/0.11.0/tutorials/vision/large_scale_classification.html), whereas you need to set some environment variables to activate speculative synchronization. We provide two different modes of synchronization.
 
 ### Fixed Waiting
 
